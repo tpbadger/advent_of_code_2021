@@ -17,7 +17,8 @@ func sum(slice []int) int {
 	return t
 }
 
-func main() {
+func DayOne() {
+	fmt.Println("day 1")
 	file, err := os.Open("./day1.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -25,7 +26,7 @@ func main() {
 	defer file.Close()
 	// part 1
 	scanner := bufio.NewScanner(file)
-	prev:= 0
+	prev := 0
 	numIncreased := 0
 	for scanner.Scan() {
 		next, err := strconv.Atoi(scanner.Text())
@@ -37,7 +38,7 @@ func main() {
 		}
 		prev = next
 	}
-	fmt.Printf("Answer to part 1 is %d\n", numIncreased - 1)
+	fmt.Printf("Answer to part 1 is %d\n", numIncreased-1)
 
 	// part 2
 	_, err = file.Seek(0, io.SeekStart)
@@ -57,7 +58,7 @@ func main() {
 	winStart := 0
 	winEnd := 2
 	for winEnd < len(nums) {
-		sums = append(sums, sum(nums[winStart:winEnd + 1]))
+		sums = append(sums, sum(nums[winStart:winEnd+1]))
 		winStart += 1
 		winEnd += 1
 	}
@@ -66,12 +67,9 @@ func main() {
 		if i == 0 {
 			continue // skip first element
 		}
-		if sum > sums[i - 1] {
-			numIncreased ++
+		if sum > sums[i-1] {
+			numIncreased++
 		}
 	}
 	fmt.Printf("Answer to part 2 is %d\n", numIncreased)
 }
-
-
-
